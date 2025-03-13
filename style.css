@@ -1,32 +1,107 @@
-* {
-  box-sizing: border-box;
-}
-
+/* === Alap stílusok === */
 body {
-  max-width: 800px;
-  margin: auto;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  background: #2d2d2d;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.galeria {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+/* === Címsor === */
+.nagykep h3 {
+  text-align: center;
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.galeria img,
-.nagykep img {
-  width: 100%;
-}
-
+/* === Nagykép konténer === */
 .nagykep {
-  display: grid;
-  grid-template-columns: 60px auto 60px;
-  border: 1px solid grey;
-  border-radius: 10px;
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media screen and (max-width: 500px) {
-  .galeria {
-    grid-template-columns: 1fr;
-  }
+.kiemeltkep {
+  width: 100%;
+  max-width: 800px; /* Keskenyebb nagykép */
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.kiemeltkep img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+/* === Léptető gombok === */
+.bal, .jobb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  backdrop-filter: blur(4px);
+}
+
+.bal { left: 5%; }  /* Közelebb a keskeny képhez */
+.jobb { right: 5%; } /* Közelebb a keskeny képhez */
+
+.bal:hover, .jobb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* === Galéria === */
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 20px;
+  max-width: 1200px;
+  width: 90%;
+}
+
+.galeria img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+  border: 2px solid transparent;
+}
+
+.galeria img:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
+}
+
+.galeria img.active {
+  border-color: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
 }
